@@ -42,18 +42,38 @@ JOIN make_details md on sv.make_id = md.make_id
 GROUP BY make_type;
 #Standard vehicles were stolen more compared to luxury vehicles
 
-#chekcing the top 10 types of vehicles which were stolen based on make type
+#chekcing the top 10 types of vehicles which were stolen based on make type= standard
 SELECT vehicle_type,COUNT(vehicle_type) as times_stolen, make_type
 FROM stolen_vehicles sv
 JOIN make_details md ON sv.make_id = md.make_id
+WHERE make_type = "Standard"
 GROUP BY vehicle_type,make_type
 ORDER BY times_stolen DESC
 LIMIT 10;
 
-#Checking the bottom 10 vehicle_type which were stolen based on make type
+#chekcing the top 10 types of vehicles which were stolen based on make type= luxury
+SELECT vehicle_type,COUNT(vehicle_type) as times_stolen, make_type
+FROM stolen_vehicles sv
+JOIN make_details md ON sv.make_id = md.make_id
+WHERE make_type = "Luxury"
+GROUP BY vehicle_type,make_type
+ORDER BY times_stolen DESC
+LIMIT 10;
+
+#Checking the bottom 10 vehicle_type which were stolen based on make type=standard
 SELECT vehicle_type,COUNT(vehicle_type) as times_stolen, make_type
 FROM stolen_vehicles sv
 JOIN make_details md ON sv.make_id = md.make_id 
+WHERE make_type = "Standard"
+GROUP BY vehicle_type,make_type
+ORDER BY times_stolen ASC
+LIMIT 10; 
+
+#Checking the bottom 10 vehicle_type which were stolen based on make type=luxury
+SELECT vehicle_type,COUNT(vehicle_type) as times_stolen, make_type
+FROM stolen_vehicles sv
+JOIN make_details md ON sv.make_id = md.make_id 
+WHERE make_type = "Luxury"
 GROUP BY vehicle_type,make_type
 ORDER BY times_stolen ASC
 LIMIT 10; 
